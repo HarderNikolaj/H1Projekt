@@ -17,5 +17,14 @@ namespace H1Projekt
         public int Km { get; set; }
         public int BraendstoftypeID { get; set; }
         public int KundeID { get; set; }
+
+        public void OpretBil(string maerke, string model, int aargang, string regnr, int km, int bTypeId, int kundeId)
+        {
+            string query = $"insert into bil values('{maerke}', '{model}', {aargang}, '{regnr}', {km}, {bTypeId}, {kundeId})";
+            DBConnection.Insert(query);
+        }
+
+
+
     }
 }

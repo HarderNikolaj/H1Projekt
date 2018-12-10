@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Bil.cs" />
     <Compile Include="Braendstoftype.cs" />
+    <Compile Include="DBConnection.cs" />
     <Compile Include="Kunde.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
