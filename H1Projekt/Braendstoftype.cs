@@ -9,7 +9,7 @@ namespace H1Projekt
     public class Braendstoftype
     {
         public int ID { get; set; }
-        public string Braendstoftype { get; set; }
+        public string Type { get; set; }
 
 
     }
