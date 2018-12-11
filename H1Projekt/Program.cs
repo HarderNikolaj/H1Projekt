@@ -10,7 +10,6 @@ namespace H1Projekt
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Environment.MachineName);
         }
     }
 }

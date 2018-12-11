@@ -18,13 +18,51 @@ namespace H1Projekt
         public int BraendstoftypeID { get; set; }
         public int KundeID { get; set; }
 
+        public Bil()
+        {
+
+        }
+        public Bil(string maerke, string model, int aargang, string regnr, int km, int bTypeId, int kundeId)
+        {
+            Maerke = maerke;
+            Model = model;
+            Aargang = aargang;
+            Registreringsnummer = regnr;
+            Km = km;
+            BraendstoftypeID = bTypeId;
+            KundeID = kundeId;
+            //OpretBil(maerke, model, aargang, regnr, km, bTypeId, kundeId);
+        }
+
         public void OpretBil(string maerke, string model, int aargang, string regnr, int km, int bTypeId, int kundeId)
         {
-            string query = $"insert into bil values('{maerke}', '{model}', {aargang}, '{regnr}', {km}, {bTypeId}, {kundeId})";
+            string query = $"insert into bil (Maerke, Model, Aargang,Registreringsnummer,Kilometer,BraendstoftypeID,KundeID) values('{maerke}', '{model}', {aargang}, '{regnr}', {km}, {bTypeId}, {kundeId})";
             DBConnection.Insert(query);
         }
 
-
-
+        public void OpretBil(Bil bil)
+        {
+            string query = $"insert into bil (Maerke, Model, Aargang,Registreringsnummer,Kilometer,BraendstoftypeID,KundeID) values('{bil.Maerke}','{bil.Model}',{bil.Aargang},'{bil.Registreringsnummer}',{bil.Km},{bil.BraendstoftypeID},{bil.KundeID})";
+            DBConnection.Insert(query);
+        }
+        public static void SletBil(string soegning)
+        {
+            try
+            {
+                string query = $"delete from bil where id = {soegning}";
+                if (DBConnection.Delete(query)>0)
+                {
+                    Console.WriteLine($"Bilen med ID {soegning} blev slettet");
+                }
+                else
+                {
+                    Console.WriteLine("Der blev ikke fundet en bil med det ID");
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("");
+            }
+        }
     }
 }

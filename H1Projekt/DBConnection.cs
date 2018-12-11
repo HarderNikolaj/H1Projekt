@@ -10,7 +10,7 @@ namespace H1Projekt
 {
     static class DBConnection
     {
-        private static readonly string connectionString = "Data Source=" + Environment.MachineName + ";Initial Catalog=sqleksempler;Integrated Security=True;";
+        private static readonly string connectionString = "Data Source=" + Environment.MachineName + ";Initial Catalog=BKbase;Integrated Security=True;";
 
         public static void Insert(string query)
         {
@@ -21,6 +21,16 @@ namespace H1Projekt
                 cmd.ExecuteNonQuery();
             }
         }
+        public static int Delete(string query)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
 
         public static void Select(string query)
         {
@@ -38,5 +48,15 @@ namespace H1Projekt
                 }
             }
         }
+
+        //public static void Update(string query)
+        //{
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        con.Open();
+        //        SqlCommand cmd = new SqlCommand(query, con);
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //}
     }
 }
