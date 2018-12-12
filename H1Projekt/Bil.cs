@@ -31,7 +31,9 @@ namespace H1Projekt
             Km = km;
             BraendstoftypeID = bTypeId;
             KundeID = kundeId;
-            //OpretBil(maerke, model, aargang, regnr, km, bTypeId, kundeId);
+            Oprettelsesdato = DateTime.Now;
+            OpretBil(maerke, model, aargang, regnr, km, bTypeId, kundeId);
+            ID = DBConnection.SelectNewestIdFromBil();
         }
 
         public void OpretBil(string maerke, string model, int aargang, string regnr, int km, int bTypeId, int kundeId)
@@ -45,23 +47,23 @@ namespace H1Projekt
             string query = $"insert into bil (Maerke, Model, Aargang,Registreringsnummer,Kilometer,BraendstoftypeID,KundeID) values('{bil.Maerke}','{bil.Model}',{bil.Aargang},'{bil.Registreringsnummer}',{bil.Km},{bil.BraendstoftypeID},{bil.KundeID})";
             DBConnection.Insert(query);
         }
-        public static void SletBil(string soegning)
+        public static void SletBil(string id)
         {
             try
             {
-                string query = $"delete from bil where id = {soegning}";
+                string query = $"delete from bil where id = {id}";
                 if (DBConnection.Delete(query)>0)
                 {
-                    Console.WriteLine($"Bilen med ID {soegning} blev slettet");
+                    Console.WriteLine($"Bilen med ID {id} blev slettet");
                 }
                 else
                 {
-                    Console.WriteLine("Der blev ikke fundet en bil med det ID");
+                    Console.WriteLine($"Bilen med ID {id} kunne ikke findes.");
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("");
+                Console.WriteLine(e.Message);
             }
         }
     }
