@@ -76,5 +76,5 @@ namespace H1Projekt
         {
             DBConnection.Select($"select * from kunde where id = {id}");
         }
-    }
+    } 
 }

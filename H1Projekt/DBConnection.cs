@@ -80,6 +80,15 @@ namespace H1Projekt
             }
         }
 
+        public static int ReturnerAntal(string tabel)
+        {
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand($"select count(id) from {tabel}", con);
+                return (int) cmd.ExecuteScalar();
+            }
+        }
         //public static void Update(string query)
         //{
         //    using (SqlConnection con = new SqlConnection(connectionString))

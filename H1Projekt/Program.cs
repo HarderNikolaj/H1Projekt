@@ -22,6 +22,7 @@ namespace H1Projekt
                         KundeMenu();
                         break;
                     case '2':
+                        BilMenu();
                         break;
                     case '3':
                         break;
@@ -46,16 +47,19 @@ namespace H1Projekt
                     Console.Clear();
                     Console.WriteLine("Kundeoversigt:\n");
                     DBConnection.Select("select * from kunde");
-                    Console.WriteLine($"Kunder i alt {}");
+                    Console.WriteLine($"Kunder i alt: {DBConnection.ReturnerAntal("kunde")}");
                     Console.ReadKey();
                     break;
                 case '2':
+                    //vi skal have en metoder der udskriver alle biler
                     Console.Clear();
                     int id = 0;
                     Console.WriteLine("Indtast kunde ID og afslut med enter");
                     int.TryParse(Console.ReadLine(),out id);
                     Console.WriteLine($"Kunde {id}:\n");
                     Kunde.SelectSingle(id);
+                    Console.WriteLine("Kundens biler:\n");
+                    Bil.BilListe(id);
                     Console.ReadKey();
                     break;
                 case '3':
@@ -70,6 +74,28 @@ namespace H1Projekt
                     var email = Console.ReadLine();
                     Kunde.OpretKunde(fornavn,efternavn,adresse,email);
                     Console.ReadKey();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private static void BilMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Bil menu:\n\n1: Vis biloversigt\n2: Vis enkelt bil\n3: Opret bil");
+            var svar = Console.ReadKey().KeyChar;
+            switch (svar)
+            {
+                case '1':
+                    Console.Clear();
+                    Bil.BilListe();
+                    Console.WriteLine($"Biler i alt: {DBConnection.ReturnerAntal("bil")}");
+                    Console.ReadKey();
+                    break;
+                case '2':
+                    Console.Clear();
+                    break;
+                case '3':
                     break;
                 default:
                     break;

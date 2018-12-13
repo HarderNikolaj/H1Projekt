@@ -66,5 +66,14 @@ namespace H1Projekt
                 Console.WriteLine(e.Message);
             }
         }
+        public static void BilListe()
+        {
+            DBConnection.Select($"select * from bil");
+        }
+
+        public static void BilListe(int kundeId)
+        {
+            DBConnection.Select($"select * from bil where KundeID = {kundeId}");
+        }
     }
 }
