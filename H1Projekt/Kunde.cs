@@ -71,7 +71,10 @@ namespace H1Projekt
 
             string query = $"update kunde set Fornavn = '{fornavn}', Efternavn = '{efternavn}', Adresse = '{adresse}', Email = '{email}' where ID = {id}";
             DBConnection.Update(query);
-
+        }
+        public static void SelectSingle(int id)
+        {
+            DBConnection.Select($"select * from kunde where id = {id}");
         }
     }
 }
