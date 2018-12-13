@@ -76,5 +76,10 @@ namespace H1Projekt
         {
             DBConnection.Select($"select * from kunde where id = {id}");
         }
+
+        public static bool KontrollerOmKundeFindes(int kundeId)
+        {
+            return DBConnection.CheckForEksistens(kundeId, "kunde");
+        }
     } 
 }

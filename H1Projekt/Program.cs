@@ -25,6 +25,7 @@ namespace H1Projekt
                         BilMenu();
                         break;
                     case '3':
+                        VaerkstedsMenu();
                         break;
                     case '4':
                         Environment.Exit(0);
@@ -102,7 +103,79 @@ namespace H1Projekt
                     Console.ReadKey();
                     break;
                 case '3':
+                    Console.Clear();
+                    Console.WriteLine("Indtast venligst ejerens kunde ID");
+                    var kundeId = int.Parse(Console.ReadLine());
+                    while (!Kunde.KontrollerOmKundeFindes(kundeId))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Den kunde kunne ikke findes i vores database.\nPrøv igen.");
+                        kundeId = int.Parse(Console.ReadLine());
+                    }
+
+                    string registreringsnummer;
+                    do
+                    {
+                        Console.WriteLine("Indtast venligst bilens registreringsnummer");
+                        registreringsnummer = Console.ReadLine();
+                    } while (registreringsnummer.Length>7);
+
+                    Console.WriteLine("Indtast venligst bilens mærke");
+                    var maerke = Console.ReadLine();
+                    Console.WriteLine("Indtast venligst bilens model");
+                    var model = Console.ReadLine();
+                    Console.WriteLine("Indtast venligst bilens årgang");
+                    int årgang;
+                    while (!int.TryParse(Console.ReadLine(),out årgang))
+                    {
+                        Console.WriteLine("Du har tastet forkert, prøv igen.");
+                    }
+                    int km;
+                    Console.WriteLine("Indtast venligst bilens kilometertal");
+                    while (!int.TryParse(Console.ReadLine(), out km))
+                    {
+                        Console.WriteLine("Du har tastet forkert, prøv igen.");
+                    }
+                    Console.WriteLine("Indtast venligst bilens brændstofstype\n\n1: Benzin\n2: El\n3: Diesel\n4: Hybrid\n");
+
+                    int braendstofId;
+                    {
+                        while (!int.TryParse(Console.ReadLine(), out braendstofId))
+                        {
+                            Console.WriteLine("Du skal indtaste et heltal, prøv igen.");
+                        }
+
+                        while (!Braendstoftype.KontrollerOmBraendstofFindes(braendstofId))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Den brændstofstype kunne ikke findes i vores database.\nPrøv igen.");
+                            while (!int.TryParse(Console.ReadLine(), out braendstofId))
+                            {
+                                Console.WriteLine("Du skal indtaste et heltal, prøv igen.");
+                            }
+                        }
+                    }
+                    var nybil = new Bil(maerke,model,årgang,registreringsnummer,km,braendstofId,kundeId);
                     break;
+                default:
+                    break;
+            }
+        }
+        private static void VaerkstedsMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Willys værkstedsmenu:\n\n1: Opret værkstedbesøg\n2: Vis enkelt værkstedsbesøg\n3: Vis kundes værkstedsbesøg\n4: Vis fremtidige værkstedsbesøg\n5: Vis alle værkstedsbesøg.");
+            var svar = Console.ReadKey().KeyChar;
+            switch (svar)
+            {
+                case '1':
+                    var aftale = new Vaerkstedsbesoeg();
+                    break;
+                case '2':
+                    break;
+                case '3':
+                    break;
+                case '4':
                 default:
                     break;
             }

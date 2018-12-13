@@ -47,14 +47,29 @@ namespace H1Projekt
                     for (int i = 0; i < table.Columns.Count; i++)
                     {
                         string f = table.Columns[i].ToString();
-                        if (table.Columns[i].ToString().Length>15)
+                        if (table.Columns[i].ToString().Length>20)
                         {
-                            f = table.Columns[i].ToString().Substring(0, 15);
+                            f = table.Columns[i].ToString().Substring(0, 20);
                         }
-                        Console.WriteLine(string.Format("{0,-15}: {1,30}",f, item[i].ToString()));
+                        Console.WriteLine(string.Format("{0,-20}: {1,30}",f, item[i].ToString()));
                     }
                     Console.WriteLine();
                 }
+            }
+        }
+        public static bool CheckForEksistens(int id, string tabel)
+        {
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                var query = $"select count(id) from {tabel} where id = {id} ";
+                var cmd = new SqlCommand(query, con);
+                var num = (int) cmd.ExecuteScalar();
+                if (num > 0)
+                    return true;
+                else
+                    return false;
+
             }
         }
 
