@@ -75,5 +75,9 @@ namespace H1Projekt
         {
             DBConnection.Select($"select * from bil where KundeID = {kundeId}");
         }
+        public static void BilEnkelt(int id)
+        {
+            DBConnection.Select($"select * from bil where id = {id}");
+        }
     }
 }

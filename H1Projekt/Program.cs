@@ -94,6 +94,12 @@ namespace H1Projekt
                     break;
                 case '2':
                     Console.Clear();
+                    int id = 0;
+                    Console.WriteLine("Indtast bil ID og afslut med enter");
+                    int.TryParse(Console.ReadLine(), out id);
+                    Console.Clear();
+                    Bil.BilEnkelt(id);
+                    Console.ReadKey();
                     break;
                 case '3':
                     break;
