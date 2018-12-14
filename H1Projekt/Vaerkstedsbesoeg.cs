@@ -22,6 +22,10 @@ namespace H1Projekt
             OpretVaerkstedsbesoeg(aftaletidspunkt, bilId, pris);
         }
 
+        public Vaerkstedsbesoeg()
+        {
+        }
+
         private static void OpretVaerkstedsbesoeg(DateTime aftaletidspunkt, int bilId, decimal pris)
         {
             try
@@ -35,6 +39,24 @@ namespace H1Projekt
             {
                 Console.WriteLine("Hov, der er sket en fejl. Værkstedsbesøget blev ikke oprettet");
             }
+        }
+        public static void VaerkstedsbesoegEnkelt(int id)
+        {
+            DBConnection.Select($"select * from Vaerkstedsbesoeg where id = {id}");
+        }
+        public static void VaerkstedsbesoegListe()
+        {
+            DBConnection.Select($"select * from Vaerkstedsbesoeg");
+        }
+
+        public static void VaerkstedsbesoegListe(int kundeId)
+        {
+            DBConnection.Select($"select * from Vaerkstedsbesoeg where BilID = {kundeId} order by aftaletidspunkt asc");
+        }
+        public static void SelectFremtidigeVaerkestedbesoeg()
+        {
+            var thisDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm").Replace('.', ':');
+            DBConnection.Select($"select * from Vaerkstedsbesoeg where aftaletidspunkt > '{thisDate}'");
         }
     }
 }

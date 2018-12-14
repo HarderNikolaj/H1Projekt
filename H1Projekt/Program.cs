@@ -164,18 +164,52 @@ namespace H1Projekt
         private static void VaerkstedsMenu()
         {
             Console.Clear();
-            Console.WriteLine("Willys værkstedsmenu:\n\n1: Opret værkstedbesøg\n2: Vis enkelt værkstedsbesøg\n3: Vis kundes værkstedsbesøg\n4: Vis fremtidige værkstedsbesøg\n5: Vis alle værkstedsbesøg.");
+            Console.WriteLine("Willys værkstedsmenu:\n\n1: Opret værkstedbesøg\n2: Vis enkelt værkstedsbesøg\n3: Vis bils værkstedsbesøg\n4: Vis fremtidige værkstedsbesøg\n5: Vis alle værkstedsbesøg.");
             var svar = Console.ReadKey().KeyChar;
             switch (svar)
             {
                 case '1':
-                    var aftale = new Vaerkstedsbesoeg();
+                    Console.Clear();
+                    Console.WriteLine("Indtast dato og tidspunkt for kundens værkstedsbesøg (yyyy-MM-dd HH:mm)");
+                    var aftaletidspunkt = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Indtast bil-ID for den bil som skal på værkstedsbesøg");
+                    var bilId = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Indtast prisen for besøget");
+                    var pris = decimal.Parse(Console.ReadLine());
+                    var aftale = new Vaerkstedsbesoeg(aftaletidspunkt,bilId,pris);
+                    Console.ReadKey();
                     break;
                 case '2':
+                    Console.Clear();
+                    int id = 0;
+                    Console.WriteLine("Indtast Værstedsbesøg ID og afslut med enter");
+                    int.TryParse(Console.ReadLine(), out id);
+                    Console.Clear();
+                    Vaerkstedsbesoeg.VaerkstedsbesoegEnkelt(id);
+                    Console.ReadKey();
                     break;
                 case '3':
+                    Console.Clear();
+                    id = 0;
+                    Console.WriteLine("Indtast bil ID og afslut med enter");
+                    int.TryParse(Console.ReadLine(), out id);
+                    Console.Clear();
+                    Console.WriteLine($"Bil {id}:\n");
+                    Vaerkstedsbesoeg.VaerkstedsbesoegListe(id);
+                    Console.ReadKey();                 
                     break;
                 case '4':
+                    Console.Clear();
+                    Console.WriteLine("Fremdtidige værkstedsbesøg:\n\n");
+                    Vaerkstedsbesoeg.SelectFremtidigeVaerkestedbesoeg();
+                    Console.ReadKey();
+                    break;
+                case '5':
+                    Console.Clear();
+                    Console.WriteLine("Alle værkstedsbesøg\n\n");
+                    Vaerkstedsbesoeg.VaerkstedsbesoegListe();
+                    Console.ReadKey();
+                    break;
                 default:
                     break;
             }
