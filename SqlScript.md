@@ -1,8 +1,10 @@
 # H1Projekt
 
-create database BKbase
+create database BKbase;
+go;
 
-use BKbase
+use BKbase;
+go;
 
 create table kunde
 (
@@ -46,3 +48,20 @@ Aftaletidspunkt datetime not null,
 BilID int not null foreign key (BilID) references Bil(ID),
 Pris decimal not null,
 )
+
+insert into table kunde (fornavn, efternavn, adresse, email) values
+('Gorm d.','Gamle','Vikingevej 22','gorm@mail.dk').
+('Harald','Blaatand','Hovedgaden 3','harald@bluetooth.com'),
+('Leif','den Lykkelige','Telefgrafvej 9','ll@mail.com')
+
+insert into table bil (maerke, model, aargang, registreringsnummer, kilometer, braendstofstypeid, kunde id) values
+('Skoda','City GO','2005,'jp12345,1,1),
+('Skoda','Octavia',2010,ko23654,1,2),
+('Fiat','Panda',2008,ja22551,1,3),
+('Fiat','Panda',2010,ja22552,1,3)
+
+insert into Vaerkstedsbesoeg
+('2018-12-24 14:00',2,1999.25),
+('2019-01-01 07:00',1,24000),
+('2015-01-03 07:00',1,4055)
+
