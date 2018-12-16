@@ -192,6 +192,23 @@ namespace H1Projekt
             }
         }
 
+
+        public void UdskrivListe(int kundeID)
+        {
+            string query = $"select ID from bil where KundeID = {kundeID}";
+            DataTable table = DBConnections.Select(query);
+            Console.Clear();
+            foreach (DataRow item in table.Rows)
+            {
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    Vælg(int.Parse(item[i].ToString()));
+                    Udskriv();
+                    Console.WriteLine("");
+                }
+            }
+        }
+
         public override void Vælg(int id)
         {
             ID = id;

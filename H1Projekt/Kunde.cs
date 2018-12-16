@@ -55,16 +55,16 @@ namespace H1Projekt
                     switch (valg)
                     {
                         case '1':
-                            Update(Kolonne.fornavn, værdi);
+                            Update(Kolonne.Fornavn, værdi);
                             break;
                         case '2':
-                            Update(Kolonne.efternavn, værdi);
+                            Update(Kolonne.Efternavn, værdi);
                             break;
                         case '3':
-                            Update(Kolonne.adresse, værdi);
+                            Update(Kolonne.Adresse, værdi);
                             break;
                         case '4':
-                            Update(Kolonne.email, værdi);
+                            Update(Kolonne.Email, værdi);
                             break;
                         default:
                             break;
@@ -98,6 +98,11 @@ namespace H1Projekt
                     List<string> liste = Bil.OpretIDatabase(regnr, mærke, model, årgang, fuelID, km, ID);
                     Console.WriteLine($"Bilen blev oprettet med ID {liste[1]}");
                     break;
+                    case '3':
+                    Console.Clear();
+                    bil.UdskrivListe(ID);
+                    Console.ReadKey();
+                    break;
                 default:
                     break;
             }
@@ -106,7 +111,7 @@ namespace H1Projekt
 
         public override void OpdaterValgtForekomst()
         {
-            DataTable table = DBConnections.Select($"Select {Kolonne.fornavn},{Kolonne.efternavn},{Kolonne.adresse},{Kolonne.email} from kunde where ID = {ID}");
+            DataTable table = DBConnections.Select($"Select {Kolonne.Fornavn},{Kolonne.Efternavn},{Kolonne.Adresse},{Kolonne.Email} from kunde where ID = {ID}");
             foreach (DataRow item in table.Rows)
             {
                 Fornavn = item[0].ToString();

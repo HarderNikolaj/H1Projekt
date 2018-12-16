@@ -26,7 +26,7 @@ namespace H1Projekt
 
         public enum Kolonne
         {
-            ID, Oprettelsesdato, Maerke, Model, Aargang, RegNr, Km, FuelID, KundeID, fornavn, efternavn, adresse, email
+            ID, Oprettelsesdato, Maerke, Model, Aargang, RegNr, Km, FuelID, KundeID, Fornavn, Efternavn, Adresse, Email, Aftaletidspunkt, BilID, Pris
         }
         public enum Brændstof
         {
