@@ -10,7 +10,7 @@ namespace H1Projekt
 {
     class DBConnections
     {
-        public static readonly string connectionstring = $"Server = {Environment.MachineName}; Database=bkbase;Trusted_Connection=True;";
+        public static readonly string connectionstring = "Data Source=" + Environment.MachineName + ";Initial Catalog=BKbase;Integrated Security=True;";
 
         public static DataTable Select(string query)
         {
