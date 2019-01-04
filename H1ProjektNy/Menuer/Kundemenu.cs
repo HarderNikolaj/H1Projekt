@@ -162,7 +162,7 @@ namespace H1ProjektNy.Menuer
                 {
                     Console.WriteLine($"{bil.Mærke} {bil.Model} fra {bil.Årgang}\nHar kørt: {bil.Km} km\n");
                 }
-
+                Console.ReadKey();
             }
             catch (FormatException)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using static H1ProjektNy.Bil;
 
 namespace H1ProjektNy.Menuer
@@ -13,7 +14,7 @@ namespace H1ProjektNy.Menuer
             {
                 check = false;
                 Console.Clear();
-                Console.WriteLine("1: Opret bil\n2: Opdater bil\n3: Slet bil\n4: Vis bil\n5: Afslut");
+                Console.WriteLine("1: Opret bil\n2: Opdater bil\n3: Slet bil\n4: Vis bil\n5: Vis værkstedsbesøg\n6: Afslut");
                 svar = Console.ReadKey().KeyChar;
 
                 switch (svar)
@@ -23,7 +24,7 @@ namespace H1ProjektNy.Menuer
                         Console.WriteLine($"Kunde nr {bil.KundeId}s {bil.Mærke} {bil.Model} er blevet oprettet i systemet");
                         break;
                     case '2':
-                        OpdaterBil();
+                        OpdaterBil(); //metoden kaldes på instansen af bilmenu, som blev oprettet i menu.. Derfor kan den kaldes på denne måde uden at være statisk
                         break;
                     case '3':
                         SletBil();
@@ -31,7 +32,10 @@ namespace H1ProjektNy.Menuer
                     case '4':
                         VisBil();
                         break;
-                    case '5': //Tom, så den ikke lander på default og looper.
+                    case '5':
+                        VisVærkstedsbesøg(); 
+                        break;
+                    case '6': //Tom, så den ikke lander på default og looper.
                         break;
                     default:
                         check = true;
@@ -159,24 +163,60 @@ namespace H1ProjektNy.Menuer
                 var biler = Select();
                 bil = biler.Find(c => c.Id == id);
 
-                Console.WriteLine($"{bil.Mærke} {bil.Model} fra {bil.Årgang}\nHar kørt {bil.Km}, registreringsnummer {bil.Registreringsnummer}\n");
+                Console.WriteLine($"{bil.Mærke} {bil.Model} fra {bil.Årgang}\nHar kørt {bil.Km} km, registreringsnummer {bil.Registreringsnummer}\n");
                 Console.ReadKey();
             }
-                catch (FormatException)
+            catch (FormatException)
+            {
+                Console.WriteLine("Forkert input. Tryk på en vilkårlig tast for at vende tilbage til hovedmenuen.");
+                Console.ReadKey();
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Det valgte ID eksisterer ikke");
+                Console.ReadKey();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Det var en upser! Smut pomfrit");
+                Console.ReadKey();
+            }
+
+            
+        }
+
+        public void VisVærkstedsbesøg()
+        {
+            try
+            {
+
+                Console.WriteLine("Indtast ID på den bil, hvis værkstedsbesøg du gerne vil se");
+                int id = int.Parse(Console.ReadLine());
+
+                List<Værkstedsbesøg> besøg = Værkstedsbesøg.Select();
+                besøg = besøg.FindAll(c => c.BilId == id);
+
+                foreach (var item in besøg)
                 {
-                    Console.WriteLine("Forkert input. Tryk på en vilkårlig tast for at vende tilbage til hovedmenuen.");
-                    Console.ReadKey();
+                    Console.WriteLine("Tid: " + item.Aftaletidspunkt + " Pris: {0:C}", item.Pris);
                 }
-                catch (NullReferenceException)
-                {
-                    Console.WriteLine("Det valgte ID eksisterer ikke");
                     Console.ReadKey();
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Det var en upser! Smut pomfrit");
-                    Console.ReadKey();
-                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Forkert input. Tryk på en vilkårlig tast for at vende tilbage til hovedmenuen.");
+                Console.ReadKey();
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Det valgte ID eksisterer ikke");
+                Console.ReadKey();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Det var en upser! Smut pomfrit");
+                Console.ReadKey();
+            }
         }
     }
 }

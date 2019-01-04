@@ -10,6 +10,7 @@ namespace H1ProjektNy.Menuer
             char svar;
             do
             {
+                Console.Clear();
                 check = false;
                 Console.WriteLine("1: Opret værkstedsbesøg\n2: Opdater værkstedsbesøg\n3: Slet værkstedsbesøg\n4: Afslut");
                 svar = Console.ReadKey().KeyChar;
@@ -18,6 +19,7 @@ namespace H1ProjektNy.Menuer
                     case '1':
                         værkstedsbesøg = OpretVærkstedsbesøg();
                         Console.WriteLine($"Værkstedsbesøg {værkstedsbesøg.Id} d. {værkstedsbesøg.Aftaletidspunkt} blev oprettet i databasen");
+                        Console.ReadKey();
                         break;
                     case '2':
                         OpdaterVærkstedsbesøg();
@@ -83,6 +85,7 @@ namespace H1ProjektNy.Menuer
 
                 besøg.Update(column, newValue);
                 Console.WriteLine($"{column} er nu blevet ændret til {newValue}");
+                Console.ReadKey();
             }
             catch (FormatException)
             {
@@ -119,10 +122,12 @@ namespace H1ProjektNy.Menuer
                 {
                     besøg.Delete();
                     Console.WriteLine("Aftalen er blevet slettet");
+                    Console.ReadKey();
                 }
                 else
                 {
                     Console.WriteLine("Aftalen blev ikke slettet");
+                    Console.ReadKey();
                 }
             }
             catch (FormatException)
