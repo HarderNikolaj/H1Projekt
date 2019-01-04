@@ -12,6 +12,7 @@ namespace H1ProjektNy
 
         public void Hovedmenu()
         {
+            Console.Clear();
             Console.WriteLine("1: Kundeoversigt\n2: Kunder\n3: Biler\n4: Værkstedsbesøg");
             char valg = Console.ReadKey().KeyChar;
             Console.WriteLine();
@@ -33,6 +34,8 @@ namespace H1ProjektNy
                     
                     break;
                 default:
+                    Console.WriteLine("Du bedes indtaste et tal mellem et og fire.");
+                    Console.ReadKey();
                     break;
             }
         }
