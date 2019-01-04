@@ -11,7 +11,7 @@ namespace H1ProjektNy
         public int BilId { get; set; }
         public decimal Pris { get; set; }
 
-        private static readonly string table = "vaerkstedsbesøg";
+        private static readonly string table = "vaerkstedsbesoeg";
 
         public Værkstedsbesøg(DateTime aftaletidspunkt, int bilId, decimal pris)
         {

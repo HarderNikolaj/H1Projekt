@@ -31,7 +31,8 @@ namespace H1ProjektNy
                     bilmenu.Menu();
                     break;
                 case '4':
-                    
+                    Værkstedsmenu værkstedsmenu = new Værkstedsmenu();
+                    værkstedsmenu.Menu();
                     break;
                 default:
                     Console.WriteLine("Du bedes indtaste et tal mellem et og fire.");
@@ -56,6 +57,7 @@ namespace H1ProjektNy
                 }
                 Console.WriteLine();               
             }
+            Console.ReadKey();
         }        
     }
 }
