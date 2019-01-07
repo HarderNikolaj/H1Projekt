@@ -7,13 +7,13 @@ namespace H1ProjektNy
     public class Værkstedsbesøg : IDbObject
     {
         public int Id { get; set; }
-        public DateTime Aftaletidspunkt { get; set; }
+        public string Aftaletidspunkt { get; set; }
         public int BilId { get; set; }
         public decimal Pris { get; set; }
 
         private static readonly string table = "vaerkstedsbesoeg";
 
-        public Værkstedsbesøg(DateTime aftaletidspunkt, int bilId, decimal pris)
+        public Værkstedsbesøg(string aftaletidspunkt, int bilId, decimal pris)
         {
             Aftaletidspunkt = aftaletidspunkt;
             BilId = bilId;
@@ -27,7 +27,7 @@ namespace H1ProjektNy
 
             foreach (DataRow item in datatable.Rows)
             {
-                Værkstedsbesøg besøg = new Værkstedsbesøg(DateTime.Parse(item[1].ToString()), int.Parse(item[2].ToString()), int.Parse(item[3].ToString()));
+                Værkstedsbesøg besøg = new Værkstedsbesøg((item[1].ToString()), int.Parse(item[2].ToString()), int.Parse(item[3].ToString()));
                 besøg.Id = int.Parse(item[0].ToString());
                 værkstedsbesøg.Add(besøg);
             }

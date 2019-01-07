@@ -18,7 +18,7 @@ namespace H1ProjektNy.Menuer
                 {
                     case '1':
                         værkstedsbesøg = OpretVærkstedsbesøg();
-                        Console.WriteLine($"Værkstedsbesøg {værkstedsbesøg.Id} d. {værkstedsbesøg.Aftaletidspunkt} blev oprettet i databasen");
+                        Console.WriteLine($"Værkstedsbesøg til bil {værkstedsbesøg.BilId} {værkstedsbesøg.Aftaletidspunkt} blev oprettet i databasen");
                         Console.ReadKey();
                         break;
                     case '2':
@@ -44,7 +44,7 @@ namespace H1ProjektNy.Menuer
             try
             {
             Console.WriteLine("Indtast venligst Aftaletidspunkt (yyyy-mm-dd hh:mm)");
-            DateTime tidspunkt = DateTime.Parse(Console.ReadLine());
+            string tidspunkt = Console.ReadLine();
             Console.WriteLine("Indtast venligst BilID");
             int bilid = int.Parse(Console.ReadLine());
             Console.WriteLine("Indtast venligst pris");
@@ -63,6 +63,7 @@ namespace H1ProjektNy.Menuer
                 Console.WriteLine("Det var en upser! Smut pomfrit");
                 Console.ReadKey();
             }
+            
 
             return værkstedsbesøg;
         }
