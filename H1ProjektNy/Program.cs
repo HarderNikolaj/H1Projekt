@@ -6,10 +6,8 @@ namespace H1ProjektNy
         {
             while (true)
             {
-                Kunde.Select();
                 Menu menu = new Menu();
                 menu.Hovedmenu();
-
             }
         }
     }

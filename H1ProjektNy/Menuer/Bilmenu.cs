@@ -22,6 +22,7 @@ namespace H1ProjektNy.Menuer
                     case '1':
                         bil = OpretBil();
                         Console.WriteLine($"Kunde nr {bil.KundeId}s {bil.Mærke} {bil.Model} er blevet oprettet i systemet");
+                        Console.ReadKey();
                         break;
                     case '2':
                         OpdaterBil(); //metoden kaldes på instansen af bilmenu, som blev oprettet i menu.. Derfor kan den kaldes på denne måde uden at være statisk
@@ -49,23 +50,38 @@ namespace H1ProjektNy.Menuer
 
         public Bil OpretBil()
         {
-            Console.WriteLine("Indtast venligst registreringsnummer");
-            string regnr = Console.ReadLine();
-            Console.WriteLine("Indtast venligst mærke");
-            string mærke = Console.ReadLine();
-            Console.WriteLine("Indtast venligst model");
-            string model = Console.ReadLine();
-            Console.WriteLine("Indtast venligst årgang");
-            int årgang = int.Parse(Console.ReadLine());
-            Console.WriteLine("Indtast venligst antal kørte kilometer");
-            int km = int.Parse(Console.ReadLine());
-            Console.WriteLine("Indtast venligst brændstoftype (ID)");
-            Brændstof brændstof = (Brændstof)int.Parse(Console.ReadLine());
-            Console.WriteLine("Indtast venligst kundeID");
-            int kundeid = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("Indtast venligst registreringsnummer");
+                string regnr = Console.ReadLine();
+                Console.WriteLine("Indtast venligst mærke");
+                string mærke = Console.ReadLine();
+                Console.WriteLine("Indtast venligst model");
+                string model = Console.ReadLine();
+                Console.WriteLine("Indtast venligst årgang");
+                int årgang = int.Parse(Console.ReadLine());
+                Console.WriteLine("Indtast venligst antal kørte kilometer");
+                int km = int.Parse(Console.ReadLine());
+                Console.WriteLine("Indtast venligst brændstoftype (ID)");
+                Brændstof brændstof = (Brændstof)int.Parse(Console.ReadLine());
+                Console.WriteLine("Indtast venligst kundeID");
+                int kundeid = int.Parse(Console.ReadLine());
 
-            bil = new Bil(regnr,mærke, model, årgang, km, brændstof,kundeid);
-            bil.Insert();
+                bil = new Bil(regnr,mærke, model, årgang, km, brændstof,kundeid);
+                bil.Insert();
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Forkert input. Tryk på en vilkårlig tast for at vende tilbage til hovedmenuen.");
+                Console.ReadKey();
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Det var en upser! Smut pomfrit");
+                Console.ReadKey();
+            }
             return bil;
         }
 
