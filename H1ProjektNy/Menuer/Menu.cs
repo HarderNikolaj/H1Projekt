@@ -53,7 +53,7 @@ namespace H1ProjektNy
                 Console.WriteLine($"Kunde nr. {kunde.Id}: {kunde.Fornavn} {kunde.Efternavn}\nAdresse: {kunde.Adresse}\nEmail: {kunde.Email}\nOprettelsesdato: {kunde.Oprettelsesdato}\nBiler: ");
                 foreach (var bil in kundebiler)
                 {
-                    Console.WriteLine($"{bil.Mærke} {bil.Model}");
+                    Console.WriteLine($"{bil.Id}: {bil.Mærke} {bil.Model}");
                 }
                 Console.WriteLine();               
             }
