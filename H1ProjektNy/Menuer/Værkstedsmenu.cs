@@ -62,6 +62,7 @@ namespace H1ProjektNy.Menuer
             {
                 Console.WriteLine("Det var en upser! Smut pomfrit");
                 Console.ReadKey();
+                
             }
             
 

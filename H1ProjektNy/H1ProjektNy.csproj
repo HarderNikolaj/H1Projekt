@@ -58,6 +58,8 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Objekter\ClassDiagram.cd" />
+    <None Include="Menuer\MenuClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
